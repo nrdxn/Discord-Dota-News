@@ -5,6 +5,8 @@ export const client = new MarciClient();
 
 export const start = () => {
     client.logger.listen();
+    client.events.load();
+
     client.login(process.env['BOT_TOKEN']).then(async () => {
         client.logger.log(
             LogLevel.INFO,
@@ -17,7 +19,6 @@ export const start = () => {
             connectTimeoutMS: 30000
         });
 
-        client.events.load();
         client.components.load();
         client.commands.load();
     });

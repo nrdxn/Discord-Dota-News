@@ -6,7 +6,7 @@ export class EventHandler {
     constructor(private client: MarciClient) {}
 
     load() {
-        const eventPath = globSync(`${process.cwd()}/src/App/Events/**/*.ts`);
+        const eventPath = globSync(`${process.cwd()}/src/app/events/**/*.ts`);
 
         eventPath.map((path) => {
             const event = require(`${process.cwd()}/${path}`).default as Event;
