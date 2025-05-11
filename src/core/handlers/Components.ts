@@ -26,7 +26,7 @@ export class ComponentsHandler {
         } catch (error: any) {
             this.client.logger.log(
                 LogLevel.WARN,
-                `Не удалось загрузить файлы комопнентов\n${error.stack ?? error}`
+                `Не удалось загрузить файлы компонентов\n${error.stack ?? error}`
             );
             return;
         }
