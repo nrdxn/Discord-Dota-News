@@ -1,6 +1,6 @@
-import { MarciClient } from '@/core/client/ClientClass';
 import { ButtonInteraction } from 'discord.js';
 import { ChangeEnablingDtoTypes } from '@/app/services/dota/dto/ChangeEnablingDto';
+import { MarciClient } from '@/core/client/ClientClass';
 import Component from '@/core/handlers/interfaces/ComponentInterface';
 
 export default new Component(
@@ -14,7 +14,7 @@ export default new Component(
 
         await client.services.database.dota
             .changeEnabling({
-                guildId: interaction.guild.id,
+                guildID: interaction.guild.id,
                 type: type
             })
             .then(async (guild) => {

@@ -1,5 +1,5 @@
-import { MarciClient } from '@/core/client/ClientClass';
 import { AutocompleteInteraction, CommandInteraction } from 'discord.js';
+import { MarciClient } from '@/core/client/ClientClass';
 import Command from '@/core/handlers/interfaces/CommandInterface';
 import Event from '@/core/handlers/interfaces/EventInterface';
 

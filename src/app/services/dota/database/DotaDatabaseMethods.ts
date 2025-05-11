@@ -1,18 +1,18 @@
-import { DotaModel } from './models/Central';
+import { DocumentType } from '@typegoose/typegoose';
+import { Collection } from 'discord.js';
+import { DotaModel } from '@/app/services/dota/database/models/Central';
 import { Dota } from '@/app/services/dota/database/models/Dota';
 import { ChangeEnablingDto } from '@/app/services/dota/dto/ChangeEnablingDto';
 import { SetChannelDto } from '@/app/services/dota/dto/SetChannelDto';
 import { UpdateTgChannelsDto } from '@/app/services/dota/dto/UpdateTgChannelsDto';
 import { MarciClient } from '@/core/client/ClientClass';
 import { LogLevel } from '@/enums/LogLevel';
-import { DocumentType } from '@typegoose/typegoose';
-import { Collection } from 'discord.js';
 
 export class DotaDatabaseMethods {
     public readonly cache: Collection<string, DocumentType<Dota>> =
         new Collection();
 
-    constructor(private client: MarciClient) {}
+    constructor(private readonly client: MarciClient) {}
 
     public async init() {
         const allGuildsInDb = await DotaModel.find();
@@ -23,18 +23,18 @@ export class DotaDatabaseMethods {
         }
     }
 
-    public async findGuildById(guildId: string) {
+    public async findGuildById(guildID: string) {
         let guild =
-            this.cache.get(guildId) ??
-            (await DotaModel.findOne({ guild: guildId })) ??
-            (await DotaModel.create({ guild: guildId }));
+            this.cache.get(guildID) ??
+            (await DotaModel.findOne({ guild: guildID })) ??
+            (await DotaModel.create({ guild: guildID }));
 
-        this.cache.set(guildId, guild);
+        if (!this.cache.has(guildID)) this.cache.set(guildID, guild);
         return guild;
     }
 
     public async changeEnabling(dto: ChangeEnablingDto) {
-        const guild = await this.findGuildById(dto.guildId);
+        const guild = await this.findGuildById(dto.guildID);
 
         switch (dto.type) {
             case 'Post':
@@ -53,8 +53,8 @@ export class DotaDatabaseMethods {
     }
 
     public async updateTgChannels(dto: UpdateTgChannelsDto) {
-        const guild = await this.findGuildById(dto.guildId);
-        const sortedChannels = this.resolveChannels(guild!, dto.channels);
+        const guild = await this.findGuildById(dto.guildID);
+        const sortedChannels = this.resolveChannels(guild, dto.channels);
 
         guild.tgChannels = [
             ...guild.tgChannels.filter(
@@ -71,7 +71,7 @@ export class DotaDatabaseMethods {
     }
 
     public async setChannelForPosting(dto: SetChannelDto) {
-        const guild = await this.findGuildById(dto.guildId);
+        const guild = await this.findGuildById(dto.guildID);
 
         guild.channelForPosting = dto.channelId;
         await this.save(guild);
@@ -80,10 +80,10 @@ export class DotaDatabaseMethods {
     }
 
     public async save(doc: DocumentType<Dota>) {
-        await doc.save().catch(() => {
+        await doc.save().catch((error: any) => {
             this.client.logger.log(
                 LogLevel.ERROR,
-                `Не удалось сохранить гильдию ${doc.guild}`
+                `Не удалось сохранить гильдию ${doc.guild}\n${error.stack ?? error}`
             );
         });
         this.cache.set(doc.guild, doc);

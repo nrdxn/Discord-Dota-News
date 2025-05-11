@@ -1,4 +1,4 @@
 export interface SetChannelDto {
-    readonly guildId: string;
+    readonly guildID: string;
     readonly channelId: string;
 }

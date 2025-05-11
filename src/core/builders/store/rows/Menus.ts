@@ -1,15 +1,15 @@
-import { Dota } from '@/app/services/dota/database/models/Dota';
-import { TelegramChannels } from '@/cfg/ChannelsConfig';
-import { MarciClient } from '@/core/client/ClientClass';
 import { DocumentType } from '@typegoose/typegoose';
 import {
     ActionRowBuilder,
     ChannelSelectMenuBuilder,
     StringSelectMenuBuilder
 } from 'discord.js';
+import { Dota } from '@/app/services/dota/database/models/Dota';
+import { TelegramChannels } from '@/cfg/ChannelsConfig';
+import { MarciClient } from '@/core/client/ClientClass';
 
 export class Menus {
-    constructor(private client: MarciClient) {}
+    constructor(private readonly client: MarciClient) {}
 
     public async telegramChannels(dto: DocumentType<Dota>) {
         return new ActionRowBuilder<StringSelectMenuBuilder>().addComponents(

@@ -1,9 +1,9 @@
-import { MarciClient } from '@/core/client/ClientClass';
 import {
     CommandInteraction,
     Interaction,
     MessageComponentInteraction
 } from 'discord.js';
+import { MarciClient } from '@/core/client/ClientClass';
 import Event from '@/core/handlers/interfaces/EventInterface';
 
 export default new Event(

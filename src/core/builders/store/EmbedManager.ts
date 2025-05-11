@@ -1,11 +1,11 @@
-import { Dota } from '@/app/services/dota/database/models/Dota';
 import { DocumentType } from '@typegoose/typegoose';
 import { EmbedBuilder, GuildMember } from 'discord.js';
 import { stripIndents } from 'common-tags';
+import { Dota } from '@/app/services/dota/database/models/Dota';
 import { MarciClient } from '@/core/client/ClientClass';
 
 export class EmbedManager {
-    constructor(private client: MarciClient) {}
+    constructor(private readonly client: MarciClient) {}
 
     public default(member: GuildMember, title: string, description: string) {
         return new EmbedBuilder()
@@ -46,7 +46,7 @@ export class EmbedManager {
             .setFooter({ text: `https://t.me/${dto.channel}/${dto.postId}` })
             .setTimestamp();
 
-        dto!.photos.length > 0 ? embed.setImage(dto.photos[0]) : null;
+        dto.photos.length > 0 ? embed.setImage(dto.photos[0]) : null;
 
         return embed;
     }

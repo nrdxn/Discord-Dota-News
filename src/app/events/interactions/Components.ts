@@ -1,10 +1,10 @@
-import { MarciClient } from '@/core/client/ClientClass';
 import {
     AnySelectMenuInteraction,
     ButtonInteraction,
     MessageComponentInteraction,
     ModalSubmitInteraction
 } from 'discord.js';
+import { MarciClient } from '@/core/client/ClientClass';
 import Component from '@/core/handlers/interfaces/ComponentInterface';
 import Event from '@/core/handlers/interfaces/EventInterface';
 

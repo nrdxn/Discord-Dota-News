@@ -1,6 +1,6 @@
-import { MarciClient } from '@/core/client/ClientClass';
 import { AnySelectMenuInteraction } from 'discord.js';
 import { stripIndents } from 'common-tags';
+import { MarciClient } from '@/core/client/ClientClass';
 import Component from '@/core/handlers/interfaces/ComponentInterface';
 
 export default new Component(
@@ -13,7 +13,7 @@ export default new Component(
 
         await client.services.database.dota
             .updateTgChannels({
-                guildId: interaction.guild.id,
+                guildID: interaction.guild.id,
                 channels: interaction.values
             })
             .then(async (data) => {

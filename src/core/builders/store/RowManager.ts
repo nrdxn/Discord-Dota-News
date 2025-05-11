@@ -6,7 +6,7 @@ export class RowManager {
     public readonly menus: Menus;
     public readonly buttons: Buttons;
 
-    constructor(private client: MarciClient) {
+    constructor(private readonly client: MarciClient) {
         this.menus = new Menus(client);
         this.buttons = new Buttons();
     }

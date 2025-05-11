@@ -13,12 +13,7 @@ export const start = () => {
             `Клиент запущен на кластере #${client.cluster.id + 1}`
         );
 
-        await client.services.database.connect({
-            serverSelectionTimeoutMS: 20000,
-            socketTimeoutMS: 45000,
-            connectTimeoutMS: 30000
-        });
-
+        await client.services.database.connect();
         client.components.load();
         client.commands.load();
     });

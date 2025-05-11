@@ -1,6 +1,6 @@
 import { CommandInteraction } from 'discord.js';
-import { MarciClient } from '@/core/client/ClientClass';
 import { stripIndents } from 'common-tags';
+import { MarciClient } from '@/core/client/ClientClass';
 import Command from '@/core/handlers/interfaces/CommandInterface';
 
 export default new Command(

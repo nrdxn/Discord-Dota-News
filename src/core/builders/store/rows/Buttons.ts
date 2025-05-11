@@ -1,6 +1,6 @@
-import { Dota } from '@/app/services/dota/database/models/Dota';
 import { DocumentType } from '@typegoose/typegoose';
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle } from 'discord.js';
+import { Dota } from '@/app/services/dota/database/models/Dota';
 
 export class Buttons {
     public adminPanel(dto: DocumentType<Dota>) {

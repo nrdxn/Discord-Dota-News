@@ -1,4 +1,4 @@
 export interface UpdateTgChannelsDto {
-    readonly guildId: string;
+    readonly guildID: string;
     readonly channels: string[];
 }

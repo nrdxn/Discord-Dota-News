@@ -1,5 +1,5 @@
-import { MarciClient } from '@/core/client/ClientClass';
 import { AnySelectMenuInteraction } from 'discord.js';
+import { MarciClient } from '@/core/client/ClientClass';
 import Component from '@/core/handlers/interfaces/ComponentInterface';
 
 export default new Component(
@@ -12,7 +12,7 @@ export default new Component(
 
         await client.services.database.dota
             .setChannelForPosting({
-                guildId: interaction.guild.id,
+                guildID: interaction.guild.id,
                 channelId: interaction.values[0]
             })
             .then(async (guild) => {

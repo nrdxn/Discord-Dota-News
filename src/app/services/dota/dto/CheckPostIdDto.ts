@@ -1,5 +1,5 @@
 export interface CheckPostIdDto {
-    readonly guildId: string;
+    readonly guildID: string;
     readonly postId: number;
     readonly channel: string;
 }

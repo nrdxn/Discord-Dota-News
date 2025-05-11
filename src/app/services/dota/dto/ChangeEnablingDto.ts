@@ -1,6 +1,6 @@
-export type ChangeEnablingDtoTypes = 'Post' | 'Comments' | 'Webhook'
+export type ChangeEnablingDtoTypes = 'Post' | 'Comments' | 'Webhook';
 
 export interface ChangeEnablingDto {
-    readonly guildId: string;
-    readonly type: ChangeEnablingDtoTypes
+    readonly guildID: string;
+    readonly type: ChangeEnablingDtoTypes;
 }

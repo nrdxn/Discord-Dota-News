@@ -53,7 +53,7 @@ export class MarciClient extends DJSClient {
         this.logger = new LoggerService();
         this.events = new EventHandler(this);
         this.commands = new CommandsHandler(this);
-        this.components = new ComponentsHandler();
+        this.components = new ComponentsHandler(this);
         this.services = {
             database: new DatabaseService(this),
             baseUtils: new BaseUtils(),
